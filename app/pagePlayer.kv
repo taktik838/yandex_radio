@@ -1,0 +1,144 @@
+#:kivy 1.11.1
+# :import color kivy.graphics.Color
+##: import icon kivy.garden.iconfonts.icon
+#:import MDButton kivymd.uix.button
+
+# <IconButtonInCircle@ButtonBehavior+AnchorLayout>:
+<IconButtonInCircle@MDIconButton>:
+    pos_hint: {'center_y': 0.5}
+    # on_release: print(self.center_y, self.parent.center_y)
+    canvas:
+        Color:
+            rgb: .5, .5, .5
+        Line:
+            width: 2
+            circle: self.center_x, self.center_y, self.height//2, 0, 360
+
+<MyButtonThumbUp@IconButtonInCircle>:
+    icon: "thumb-up"
+
+<MyButtonFastForward5@IconButtonInCircle>:
+    icon: "fast-forward-5"
+
+<MyButtonFastForward10@IconButtonInCircle>:
+    icon: "fast-forward-10"
+
+<MyButtonFastForward30@IconButtonInCircle>:
+    icon: "fast-forward-30"
+
+<MyButtonSkipNext@IconButtonInCircle>:
+    icon: "skip-next"
+
+<MyButtonPlay@MDIconButton>:
+    icon: "play"
+    user_font_size: 40
+    progressDownload: 360
+    progressPlay: 0
+    # on_release: self.parent.parent._play_pause
+    canvas:
+        Color:
+            rgba: .5, .5, .5, 1
+        Line:
+            circle: self.center_x, self.center_y, self.height//2, 0, 360
+            dash_length: 10
+            dash_offset: 10
+        Line:
+            width: 2
+            circle: self.center_x, self.center_y, self.height//2, 0, self.progressDownload
+        Color:
+            rgba: 0, 0, 0, 1
+        Line:
+            width: 2
+            circle: self.center_x, self.center_y, self.height//2, 0, self.progressPlay
+
+<MyButtonSkipPrevious@IconButtonInCircle>:
+    icon: "skip-previous"
+
+<MyButtonRewind5@IconButtonInCircle>:
+    icon: "rewind-5"
+
+<MyButtonRewind10@IconButtonInCircle>:
+    icon: "rewind-10"
+
+<MyButtonRewind30@IconButtonInCircle>:
+    icon: "rewind-30"
+
+
+<MyButtonThumbDown@IconButtonInCircle>:
+    icon: "thumb-down"
+
+<ItemForList@RelativeLayout>:
+    orientation: "vertical"
+<BoxAnchorLayout@MDBoxLayout+AnchorLayout>
+# <Mid@MDBoxLayout>:
+#     canvas:
+#         Ellipse:
+#             pos: self.center_x - min(self.size)//2, self.center_y - min(self.size)//2
+#             size: min(self.size), min(self.size)
+#             # source: 'ellipsebg.png'
+#             texture: self.parent.texture
+#     Label:
+#         text: "midasdfasdfasdfasgasdfagsdfsfasdf"
+
+
+<PagePlayer>:
+
+    orientation: "vertical"
+
+    BoxLayout:
+        size_hint: 1, .1
+        orientation: "horizontal"
+        # Button:
+        #     text: "X"
+        #     size_hint: .3, 1
+        Button:
+            markup: True
+            size_hint_x: None
+            width: 100
+        MDRoundFlatButton:
+            text: "I love Python"
+            icon: "language-python"
+        Label:
+            text: "taktik838"
+        Button:
+            text: "S"
+            size_hint: .3, 1
+
+    BoxLayout:
+        canvas:
+            # Color:
+            #     rgb: 1, 1, 0.4
+            Rectangle:
+                pos: self.center_x - min(self.size)//2, self.center_y - min(self.size)//2
+                size: min(self.size), min(self.size)
+                texture: self.parent._gradient_texture()
+        Label:
+            text: 'mid'
+        # bg: self.parent.station.station.icon.background_color
+
+    AnchorLayout:
+        size_hint: 1, None
+        anchor: 'center'
+        height: l1.height
+        # BoxAnchorLayout:
+        MDBoxLayout:
+            id: l1
+            adaptive_size: True
+            padding: 12, 2, 12, 20
+            spacing: 30
+            orientation: "horizontal"
+
+            MyButtonThumbDown:
+                on_release: root._dislike()
+            MyButtonSkipPrevious:
+                on_release: root._skip_previos()
+            # MyButtonRewind5:
+            MyButtonPlay:
+                id: play_pause
+                on_release: root._play_pause()
+            # MyButtonFastForward5:
+            MyButtonSkipNext:
+                on_release: root._skip_next()
+            MyButtonThumbUp:
+                on_release: root._like()
+
