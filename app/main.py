@@ -22,7 +22,7 @@ class MainPage(AnchorLayout):pass
 class MyYandexMusicApp(MDApp):
     def __init__(self, **args):
         super().__init__(**args)
-        self.client = Client('AgAAAAAPefDTAAG8XjvWef21eU8SoQU7-L5qtok')
+        self.client = Client()
 
     def build(self):
         self.hey = 'hey'
